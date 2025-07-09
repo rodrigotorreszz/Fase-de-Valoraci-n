@@ -1,0 +1,423 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Part Plus",
+    "description": "API for Part Plus",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/institutotecnicorica-5e7/Trabajo/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "paths": {
+    "/api/clients": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Obtener lista de clientes",
+        "description": "Lista de todos los clientes registrados",
+        "operationId": "get-all-clients",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Crear nuevo cliente",
+        "description": "Registra un nuevo cliente en la base de datos",
+        "operationId": "post-new-client",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api_clients_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/clients/{id}": {
+      "get": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Obtener cliente por ID",
+        "description": "Datos del cliente",
+        "operationId": "get-client-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente encontrado"
+          },
+          "404": {
+            "description": "Cliente no encontrado"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Actualizar datos del cliente",
+        "description": "Actualiza nombre, correo, edad u otra información de un cliente",
+        "operationId": "update-client-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clients_id_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cliente actualizado"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Cliente no encontrado"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Cliente"
+        ],
+        "summary": "Eliminar cliente",
+        "description": "Borra un cliente por su ID",
+        "operationId": "delete-client-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente eliminado"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Cliente no encontrado"
+          }
+        }
+      }
+    },
+    "/api/reservations": {
+      "get": {
+        "tags": [
+          "Reservas"
+        ],
+        "summary": "Listar todas las reservas",
+        "description": "Lista de reservas existentes",
+        "operationId": "get-all-reservations",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Reservas"
+        ],
+        "summary": "Crear una nueva reserva",
+        "description": "Crea una reserva para un cliente específico",
+        "operationId": "post-new-reservation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api_reservations_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/reservations/{id}": {
+      "get": {
+        "tags": [
+          "Reservas"
+        ],
+        "summary": "Obtener una reserva por ID",
+        "description": "Datos de la reserva",
+        "operationId": "get-reservation-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reserva encontrada"
+          },
+          "404": {
+            "description": "Reserva no encontrada"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Reservas"
+        ],
+        "summary": "Actualizar una reserva",
+        "description": "Modifica la fecha, servicio u otra información de una reserva",
+        "operationId": "update-reservation-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/reservations_id_body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reserva actualizada"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Reserva no encontrada"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Reservas"
+        ],
+        "summary": "Eliminar una reserva",
+        "description": "Reserva eliminada",
+        "operationId": "delete-reservation-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reserva eliminada"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Reserva no encontrada"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "summary": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "summary": "Partly Cloudy",
+          "description": "There will be scattered clouds with occasional sunshine.",
+          "icon": "cloudy"
+        }
+      },
+      "DeviceRegistrationInfo": {
+        "type": "object",
+        "properties": {
+          "uri": {
+            "type": "string",
+            "format": "uri",
+            "example": "http://10.0.0.220:8080"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "0729a580-2240-11e6-9eb5-0002a5d5c51b"
+          }
+        },
+        "example": {
+          "uri": "http://10.0.0.220:8080",
+          "id": "0729a580-2240-11e6-9eb5-0002a5d5c51b"
+        }
+      },
+      "api_clients_body": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          }
+        }
+      },
+      "clients_id_body": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          }
+        }
+      },
+      "api_reservations_body": {
+        "type": "object",
+        "properties": {
+          "clientid": {
+            "type": "string"
+          },
+          "vehicle": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "reservations_id_body": {
+        "type": "object",
+        "properties": {
+          "clientid": {
+            "type": "string"
+          },
+          "vehicle": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
